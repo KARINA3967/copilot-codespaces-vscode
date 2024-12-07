@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <limits> // Required for numeric_limits
+
+using namespace std;
+
+int main() {
+  int n;
+  cout << "Введите количество чисел (N): ";
+  cin >> n;
+
+  vector<double> numbers(n);
+  cout << "Введите " << n << " вещественных чисел:" << endl;
+  for (int i = 0; i < n; ++i) {
+    cin >> numbers[i];
+  }
+
+  double min_positive = numeric_limits<double>::max();
+  double max_negative = numeric_limits<double>::lowest();
+
+  for (double num : numbers) {
+    if (num > 0) min_positive = min(min_positive, num);
+    if (num < 0) max_negative = max(max_negative, num);
+  }
+
+  cout << "Разница: " << min_positive - max_negative << endl;
+  return 0;
+}
+
